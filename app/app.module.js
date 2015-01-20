@@ -1,4 +1,8 @@
 /*global require,module,console,angular */
+
+// Other scripts
+require("./../assets/js/background");
+// Angular dependencies
 require("angular/angular");
 require("angular-route/angular-route");
 

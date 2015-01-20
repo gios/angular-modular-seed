@@ -36,7 +36,9 @@ gulp.task("browserify", function () {
 gulp.task("watch", function () {
     "use strict";
     watch("./app/**/**/*.js");
+    watch("./assets/**/**/*.js");
     gulp.watch("./app/**/**/*.js", ["browserify", "compress"]);
+    gulp.watch("./assets/**/**/*.js", ["browserify", "compress"]);
 });
 
 gulp.task("compress", function () {
