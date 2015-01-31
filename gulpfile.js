@@ -1,12 +1,15 @@
-/*global require */
+/*jshint node: true */
 var gulp = require("gulp"),
     connect = require("gulp-connect"),
     open = require("gulp-open"),
-    browserify = require("browserify"),
-    source = require('vinyl-source-stream'),
     watch = require('gulp-watch'),
     uglify = require('gulp-uglify'),
-    rename = require("gulp-rename");
+    rename = require("gulp-rename"),
+    shell = require('gulp-shell'),
+    browserify = require("browserify"),
+    source = require('vinyl-source-stream'),
+    karma = require('karma').server,
+    protractor = require("gulp-protractor").protractor;
 
 gulp.task("connect", function () {
     "use strict";
@@ -47,6 +50,30 @@ gulp.task("compress", function () {
         .pipe(uglify())
         .pipe(rename("interestShare.min.js"))
         .pipe(gulp.dest("./dist/"));
+});
+
+gulp.task("webdriver", shell.task([
+    "webdriver-manager update",
+    "webdriver-manager start"
+]));
+
+gulp.task("test:karma", function (done) {
+    "use strict";
+    karma.start({
+        configFile: __dirname + "/karma.conf.js",
+        singleRun: true
+    }, done);
+});
+
+gulp.task("test:protractor", function (done) {
+    gulp.src(["./tests/e2e/*Spec.js"])
+        .pipe(protractor({
+            configFile: __dirname + "/protractor.conf.js",
+            args: ["--baseUrl", "http://localhost:4444/wd/hub"]
+        }))
+        .on('error', function (e) {
+            throw e;
+        });
 });
 
 gulp.task("default", ["connect", "open", "browserify", "compress", "watch"]);
