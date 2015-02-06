@@ -2,11 +2,12 @@
 require("angular/angular");
 require("angular-route/angular-route");
 
-angular.module("GeneralApp", ["ngRoute"]);
-angular.module("GeneralApp").controller("GeneralCtrl", require("./components/general/controller"));
+angular.module("RegistrationApp", ["ngRoute"]);
+angular.module("RegistrationApp").controller("RegistrationCtrl", require("./components/registration/controller"));
+angular.module("RegistrationApp").directive("myRegistration", require("./components/registration/directive"));
 
 angular.module("MainApp", [
-    "GeneralApp"
+    "RegistrationApp"
 ]);
 
-angular.module("MainApp").config(["$routeProvider", require("./app.routes")]);
+angular.module("MainApp").config(["$routeProvider", "$locationProvider", require("./app.routes")]);
