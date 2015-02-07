@@ -1,4 +1,5 @@
 /*global require,module,console,angular */
+
 require("angular/angular");
 
 module.exports = function () {

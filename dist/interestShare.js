@@ -1,5 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*global require,module,console,angular */
+
 require("angular/angular");
 require("angular-route/angular-route");
 
@@ -14,6 +15,7 @@ angular.module("MainApp", [
 angular.module("MainApp").config(["$routeProvider", "$locationProvider", require("./app.routes")]);
 },{"./app.routes":2,"./components/registration/controller":3,"./components/registration/directive":4,"angular-route/angular-route":5,"angular/angular":6}],2:[function(require,module,exports){
 /*global require,module,console,angular */
+
 require("angular/angular");
 
 module.exports = function ($routeProvider, $locationProvider) {
@@ -34,14 +36,17 @@ module.exports = function ($routeProvider, $locationProvider) {
 };
 },{"angular/angular":6}],3:[function(require,module,exports){
 /*global require,module,console,angular */
+
 require("angular/angular");
 
-module.exports = function ($scope) {
+module.exports = function ($scope, $window) {
     "use strict";
     $scope.hello = "HelloWorld";
+    $window.document.title = "interestShare - Registration";
 };
 },{"angular/angular":6}],4:[function(require,module,exports){
 /*global require,module,console,angular */
+
 require("angular/angular");
 
 module.exports = function () {
