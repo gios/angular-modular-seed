@@ -31,7 +31,7 @@ gulp.task("open", function () {
 
 gulp.task("browserify", function () {
     "use strict";
-    return browserify("./app/app.module.js")
+    return browserify("./app/app.modules.js")
         .bundle()
         .pipe(source("interestShare.js"))
         .pipe(gulp.dest("./dist/"));
@@ -58,7 +58,7 @@ gulp.task("webdriver", shell.task([
     "webdriver-manager start"
 ]));
 
-gulp.task("test:karma", function (done) {
+gulp.task("test:unit", function (done) {
     "use strict";
     karma.start({
         configFile: __dirname + "/karma.conf.js",
@@ -66,7 +66,7 @@ gulp.task("test:karma", function (done) {
     }, done);
 });
 
-gulp.task("test:protractor", function (done) {
+gulp.task("test:e2e", function (done) {
     gulp.src(["./tests/e2e/*Spec.js"])
         .pipe(protractor({
             configFile: __dirname + "/protractor.conf.js",

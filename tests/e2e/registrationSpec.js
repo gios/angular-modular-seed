@@ -1,5 +1,5 @@
 /*jshint jasmine: true*/
-/*global browser, element, by*/
+/*global browser,element,by*/
 
 describe('registration homepage', function () {
 
