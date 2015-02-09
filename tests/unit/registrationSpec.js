@@ -1,10 +1,5 @@
-/*jshint mocha: true*/
-/*global browser,element,by,module,inject,require*/
-
-var chai = require('chai'),
-    assert = chai.assert,
-    expect = chai.expect,
-    should = chai.should();
+/*jshint jasmine: true*/
+/*global angular,browser,element,by,module,inject,require*/
 
 //describe('registration homepage', function () {
 //    var $scope,
@@ -31,22 +26,25 @@ var chai = require('chai'),
 //    //    });
 //});
 
-describe('Person', function () {
-    var controller, $scope;
+describe('PasswordController', function () {
+    beforeEach(angular.mock.module('app'));
 
-    beforeEach(function () {
-        angular.mock.module("APP");
-    });
+    var $controller;
 
-    beforeEach(angular.mock.inject(function ($rootScope, $controller) {
-        $scope = $rootScope.$new();
-        controller = $controller('mainCtrl', {
-            $scope: $scope
-        });
+    beforeEach(inject(function (_$controller_) {
+        // The injector unwraps the underscores (_) from around the parameter names when matching
+        $controller = _$controller_;
     }));
 
-
-    it('should exist', function () {
-        expect(controller).to.exist;
+    describe('$scope.grade', function () {
+        it('sets the strength to "strong" if the password length is >8 chars', function () {
+            var $scope = {};
+            var controller = $controller('PasswordController', {
+                $scope: $scope
+            });
+            $scope.password = 'longerthaneightchars';
+            $scope.grade();
+            expect($scope.strength).toEqual('strong');
+        });
     });
 });
