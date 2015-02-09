@@ -1,5 +1,5 @@
 /*jshint jasmine: true*/
-/*global angular,browser,element,by,module,inject,require*/
+/*global angular,inject*/
 
 //describe('registration homepage', function () {
 //    var $scope,
