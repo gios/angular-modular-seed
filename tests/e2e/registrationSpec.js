@@ -1,5 +1,13 @@
-/*jshint jasmine: true*/
+/*jshint mocha: true*/
+/*jshint node: true */
 /*global browser,element,by*/
+
+var chai = require('chai'),
+    chaiAsPromised = require('chai-as-promised'),
+    expect = chai.expect,
+    assert = chai.assert;
+chai.should();
+chai.use(chaiAsPromised);
 
 describe('registration homepage', function () {
 
@@ -9,19 +17,30 @@ describe('registration homepage', function () {
     });
 
     it('should have a title', function () {
-        expect(browser.getTitle()).toEqual('interestShare - Registration');
+        expect(browser.getTitle()).to.eventually.equal('interestShare - Registration');
     });
 
     it('should have a 5 form-group', function () {
-        var formGroups = element.all(by.css('.form-group'));
-        expect(formGroups.count()).toBe(5);
+        element.all(by.css('.form-group')).count().then(function (formGroupCount) {
+            formGroupCount.should.equal(5);
+        });
     });
 
     it('should have a fields name', function () {
-        var inputFields = element.all(by.css('.registrationPanel .col-sm-7 input'));
-        expect(inputFields.get(0).getAttribute('id')).toEqual('nameRegistrationField');
-        expect(inputFields.get(1).getAttribute('id')).toEqual('emailRegistrationField');
-        expect(inputFields.get(2).getAttribute('id')).toEqual('passwordRegistrationField');
-        expect(inputFields.get(3).getAttribute('id')).toEqual('passwordRepeatField');
+        element.all(by.css('.registrationPanel .col-sm-7 input')).get(0).getAttribute('id').then(function (inputFields) {
+            inputFields.should.equal('nameRegistrationField');
+        });
+
+        element.all(by.css('.registrationPanel .col-sm-7 input')).get(1).getAttribute('id').then(function (inputFields) {
+            inputFields.should.equal('emailRegistrationField');
+        });
+
+        element.all(by.css('.registrationPanel .col-sm-7 input')).get(2).getAttribute('id').then(function (inputFields) {
+            inputFields.should.equal('passwordRegistrationField');
+        });
+
+        element.all(by.css('.registrationPanel .col-sm-7 input')).get(3).getAttribute('id').then(function (inputFields) {
+            inputFields.should.equal('passwordRepeatField');
+        });
     });
 });

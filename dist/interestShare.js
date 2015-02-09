@@ -13,22 +13,6 @@ angular.module("MainApp", [
 ]);
 
 angular.module("MainApp").config(["$routeProvider", "$locationProvider", require("./app.routes")]);
-
-/* test */
-angular.module('app', [])
-    .controller('PasswordController', function PasswordController($scope) {
-        $scope.password = '';
-        $scope.grade = function () {
-            var size = $scope.password.length;
-            if (size > 8) {
-                $scope.strength = 'strong';
-            } else if (size > 3) {
-                $scope.strength = 'medium';
-            } else {
-                $scope.strength = 'weak';
-            }
-        };
-    });
 },{"./app.routes":2,"./components/registration/controller":3,"./components/registration/directive":4,"angular-route/angular-route":5,"angular/angular":6}],2:[function(require,module,exports){
 /*global require,module,console,angular */
 
