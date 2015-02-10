@@ -5,5 +5,5 @@ require("angular/angular");
 module.exports = function ($scope, $window) {
     "use strict";
     $scope.hello = "HelloWorld";
-    $window.document.title = "interestShare - Registration";
+    $window.document.title = "Registration";
 };

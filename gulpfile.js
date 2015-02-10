@@ -33,7 +33,7 @@ gulp.task("browserify", function () {
     "use strict";
     return browserify("./app/app.modules.js")
         .bundle()
-        .pipe(source("interestShare.js"))
+        .pipe(source("myApp.js")) // Your name of application
         .pipe(gulp.dest("./dist/"));
 });
 
@@ -47,9 +47,9 @@ gulp.task("watch", function () {
 
 gulp.task("compress", function () {
     "use strict";
-    gulp.src("./dist/interestShare.js")
+    gulp.src("./dist/myApp.js") // Your name of application                   
         .pipe(uglify())
-        .pipe(rename("interestShare.min.js"))
+        .pipe(rename("myApp.min.js")) // Your name of application
         .pipe(gulp.dest("./dist/"));
 });
 
